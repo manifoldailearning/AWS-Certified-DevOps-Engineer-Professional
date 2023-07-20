@@ -18,7 +18,7 @@ aws configure
 
 
 ## Create remote repositories in AWS code commit & clone to local system
-
+- Generate https credentials with aws codecommit
 ```
 git clone <repo>
 ```
