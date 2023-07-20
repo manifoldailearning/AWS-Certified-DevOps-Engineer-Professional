@@ -100,7 +100,7 @@ git remote add origin https://git-codecommit.ap-south-1.amazonaws.com/v1/repos/m
 
 git remote -v # display remote repositories
 
-git push -u origin master # push changes to remote repositories
+git push -u origin main # push changes to remote repositories
 
 ```
 ##  goto commits in aws code commit
@@ -114,7 +114,7 @@ git remote rm <name>
 git push -u <name> <branch> # to push to remotes
 
 
-# Section 3 - Cloning & Branching
+# Cloning & Branching
 
 ## Clone a Repository
 ```
@@ -140,7 +140,7 @@ git checkout -b test
 #modify on branch
 git status
 
-git checkout master
+git checkout main
 git status
 
 git checkout dev
@@ -148,9 +148,9 @@ git add .
 git commit -m "Fixed with youtube link"
 git push -u origin dev
 
-git checkout master
+git checkout main
 git merge dev # merge with branch
-git push -u origin master
+git push -u origin main
 
 ```
 ## Fast Forward
@@ -171,14 +171,14 @@ git checkout dev2
 git add .
 git commit -m "change title"
 
-#modify on master branch without pushing to remote repo
-git checkout master
+#modify on main branch without pushing to remote repo
+git checkout main
 git branch
 git pull # just pull the update from remote
-#edit on Master branch
+#edit on main branch
 git add index.html
 git commit -m "adjust case"
-git push -u origin master
+git push -u origin main
 
 
 #switch back to branch of dev2
@@ -186,8 +186,8 @@ git branch
 git checkout dev2
 git status
 
-#merge back to master
-git checkout master
+#merge back to main
+git checkout main
 git merge dev2
 
 #Conflict, Merge failed
@@ -197,7 +197,7 @@ vi index.html
 #perform fix on html file
 git add index.html
 git checkout index.html -m "fixed conflict"
-git push -u origin master
+git push -u origin main
 
 #clear branch
 git branch -d dev2
@@ -212,15 +212,15 @@ git checkout dev
 git add .
 git commit -m "update branch dev"
 git push -u origin dev
-git checkout master
+git checkout main
 git merge dev
 
 #remove branches
 
 git checkout qa
 #do changes on qa branch
-#merge with master
-git pull origin master
+#merge with main
+git pull origin main
 #this will update branch qa
 
 #Rebase --> Get the data status
@@ -229,12 +229,12 @@ git checkout -b dev
 vi index.html # edit
 git add .
 git commit -m "changes on branch"
-git checkout master
+git checkout main
 vi index.html #edit on a file
 git add .
-git commit -m " changes on master"
+git commit -m " changes on main"
 git checkout dev
-git rebase master
+git rebase main
 vi index.html # fix issues
 git log
 
