@@ -9,7 +9,15 @@ git config --global -l
 git config --global core.autocrlf true
 ```
 
-## Create remote repositories in AWS code commit & clone to local
+- install cli - https://docs.aws.amazon.com/cli/latest/userguide/getting-started-install.html
+- generate access key with IAM
+- configure the AWS CLI 
+```
+aws configure
+```
+
+
+## Create remote repositories in AWS code commit & clone to local system
 
 ```
 git clone <repo>
