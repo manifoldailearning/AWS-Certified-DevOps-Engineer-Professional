@@ -36,6 +36,7 @@ git commit -m "This is my first commit"
 git status
 
 git log
+git push -u origin main
 ```
 
 ## Other ways to add:
@@ -57,11 +58,10 @@ write the text ands save
 ':wq' on keyboard  to save the file
 
 git add .
-
-git diff
-```
-Add some text again
-```
+git commit -m "readme"
+    edit the file
+git diff # unstaged differences from last commit
+git add .
 git diff --staged
 ```
 
@@ -74,22 +74,19 @@ cat hello.txt
 ```
 ## Remove changes since last commit
 ```
-git checkout -- hello.txt
+git checkout -- readme.txt
 git status
-cat hello.txt
-
-vi hello.txt # add some text for file
-git add .
-git commit hello.txt -m "this is a commit"
+# Do changes on files & commit to repo
+git commit -a -m "this is a commit"
 git status
 
 git reset --soft HEAD^ # Reset to staging
 git status
 
-touch hello2.txt
-git add hello2.txt
+touch hello.txt # create file & add content
+git add hello.txt
 git commit --amend -m "New file has been added"
-
+git status
 
 git reset --hard HEAD^ --> Undo last commit and all the changes
 git reset --hard HEAD^^ --> Undo last two commits
