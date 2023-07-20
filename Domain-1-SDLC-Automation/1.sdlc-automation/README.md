@@ -1,5 +1,14 @@
 # CodeCommit
 
+```
+git --version
+git config --global user.name "nachiketh"
+git config --global user.email "support@manifoldailearning.in"
+git config --global color.ui=true
+git config --global -l
+git config --global core.autocrlf true
+```
+
 ## Create remote repositories in AWS code commit & clone to local
 
 ```
