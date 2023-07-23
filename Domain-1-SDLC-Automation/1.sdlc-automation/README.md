@@ -128,22 +128,17 @@ git remote -v # points to clone URL
 ## Change title and push code to code commit
 
 
-##  Branches 
+##  Branches & Fashforward
 ```
 git branch dev
 git branch
 
 git checkout dev
 
-git checkout -b test
 
 #modify on branch
 git status
-
-git checkout main
 git status
-
-git checkout dev
 git add .
 git commit -m "Fixed with youtube link"
 git push -u origin dev
@@ -152,45 +147,11 @@ git checkout main
 git merge dev # merge with branch
 git push -u origin main
 
-```
-## Fast Forward
-
-
-## remove branch
-```
 git branch -d dev --> remove a branch
-git push -d origin dev
-git branch -D dev --> Remove un merged branch
+git push --delete origin dev --> remove a branch on remote
 
-git branch
-
-#Create new branch
-git branch dev2
-git checkout dev2
-#edit on dev2 branch
-git add .
-git commit -m "change title"
-
-#modify on main branch without pushing to remote repo
-git checkout main
-git branch
-git pull # just pull the update from remote
-#edit on main branch
-git add index.html
-git commit -m "adjust case"
-git push -u origin main
-
-
-#switch back to branch of dev2
-git branch
-git checkout dev2
-git status
-
-#merge back to main
-git checkout main
-git merge dev2
-
-#Conflict, Merge failed
+```
+# Conflict, Merge failed
 
 git merge --abort
 vi index.html
