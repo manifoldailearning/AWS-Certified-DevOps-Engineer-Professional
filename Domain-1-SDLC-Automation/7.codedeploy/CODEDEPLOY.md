@@ -1,6 +1,5 @@
 
 # Installing the CodeDeploy agent on EC2
-** Updated way to install with SSM **
 ```YAML
 
 - Create EC2 Instance with IAM Role attached
@@ -27,3 +26,22 @@ chmod +x ./install
 sudo ./install auto
 sudo service codedeploy-agent status
 ```
+
+
+# deploy the files into S3
+```
+aws s3 mb s3://aws-devops-manifoldailearning9945 
+aws s3api put-bucket-versioning --bucket aws-devops-manifoldailearning9945 --versioning-configuration Status=Enabled 
+```
+
+# Create Application in CodeDeploy with application name as : aws-devops
+
+# deploy the files into S3
+```
+aws deploy push --application-name aws-devops --s3-location s3://aws-devops-manifoldailearning9945/codedeploy-demo/app.zip --ignore-hidden-files
+```
+
+
+# Metadata for EC2 :
+
+ https://docs.aws.amazon.com/AWSEC2/latest/UserGuide/instancedata-data-retrieval.html
