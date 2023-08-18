@@ -53,7 +53,7 @@ Resources:
   VpcStack:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: !Sub https://${S3BucketName}.s3.amazonaws.com/vpc.yaml
+      TemplateURL: https://raw.githubusercontent.com/manifoldailearning/AWS-Certified-DevOps-Engineer-Professional/main/Domain-2-IaaC/1.basic-cf/11.nest-vpc.yaml
       TimeoutInMinutes: 20
       Parameters:
         AvailabilityZones: !Join

@@ -1,6 +1,6 @@
 AWSTemplateFormatVersion: "2010-09-09"
 
-Description: AWS CloudFormation workshop - Nested stacks - VPC template.
+Description: AWS DevOps Course Manifold AI Learning
 
 Parameters:
   AvailabilityZones:
