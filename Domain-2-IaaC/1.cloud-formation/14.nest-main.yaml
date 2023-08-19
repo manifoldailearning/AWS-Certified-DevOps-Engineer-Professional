@@ -16,7 +16,7 @@ Parameters:
   VPCName:
     Description: The name of the VPC.
     Type: String
-    Default: cfn-workshop-vpc
+    Default: cfn-manifold-vpc
 
   VPCCidr:
     Description: The CIDR block for the VPC.
@@ -53,7 +53,7 @@ Resources:
   VpcStack:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: https://raw.githubusercontent.com/manifoldailearning/AWS-Certified-DevOps-Engineer-Professional/main/Domain-2-IaaC/1.cloud-formation/11.nest-vpc.yaml
+      TemplateURL: !Sub https://${S3BucketName}.s3.amazonaws.com/11.nest-vpc.yaml
       TimeoutInMinutes: 20
       Parameters:
         AvailabilityZones: !Join
@@ -67,13 +67,14 @@ Resources:
   IamStack:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: https://raw.githubusercontent.com/manifoldailearning/AWS-Certified-DevOps-Engineer-Professional/main/Domain-2-IaaC/1.cloud-formation/12.nest-iam.yaml
+      TemplateURL: !Sub https://${S3BucketName}.s3.amazonaws.com/12.nest-iam.yaml
       TimeoutInMinutes: 10
 
   EC2Stack:
     Type: AWS::CloudFormation::Stack
     Properties:
-      TemplateURL: https://raw.githubusercontent.com/manifoldailearning/AWS-Certified-DevOps-Engineer-Professional/main/Domain-2-IaaC/1.cloud-formation/13.nest-ec2.yaml
+      TemplateURL: !Sub https://${S3BucketName}.s3.amazonaws.com/13.nest-ec2.yaml
+      TimeoutInMinutes: 20
       TimeoutInMinutes: 20
       Parameters:
         EnvironmentType: !Ref EnvironmentType

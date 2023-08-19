@@ -29,18 +29,6 @@ Parameters:
     Type: AWS::SSM::Parameter::Value<AWS::EC2::Image::Id>
     Default: /aws/service/ami-amazon-linux-latest/amzn2-ami-hvm-x86_64-gp2
 
-  VpcId:
-    Description: The VPC ID
-    Type: AWS::EC2::VPC::Id
-
-  SubnetId:
-    Description: The Subnet ID
-    Type: AWS::EC2::Subnet::Id
-
-  WebServerInstanceProfile:
-    Description: Instance profile resource ID
-    Type: String
-
 Mappings:
   EnvironmentToInstanceType:
     Dev:
@@ -51,6 +39,27 @@ Mappings:
       InstanceType: t2.small
 
 Resources:
+  SSMIAMRole:
+    Type: AWS::IAM::Role
+    Properties:
+      AssumeRolePolicyDocument:
+        Statement:
+          - Effect: Allow
+            Principal:
+              Service:
+                - ec2.amazonaws.com
+            Action:
+              - sts:AssumeRole
+      ManagedPolicyArns:
+        - arn:aws:iam::aws:policy/AmazonSSMManagedInstanceCore
+
+  WebServerInstanceProfile:
+    Type: AWS::IAM::InstanceProfile
+    Properties:
+      Path: /
+      Roles:
+        - !Ref SSMIAMRole
+
   WebServerInstance:
     CreationPolicy:
       ResourceSignal:
@@ -85,7 +94,7 @@ Resources:
                     <h2>EC2 Instance ID: <?php echo $instance_id ?></h2>
                     <h2>Availability Zone: <?php echo $zone ?></h2>
                     <h2>AMI ID: <?php echo $ami_id ?></h2>
-                    <p>Hope you are enjoying your learning journey with us, Team Manifold AI Learning </p>
+                    <p> We hope you are enjoying learning with us, feel free to share feedback </p>
                   </center>
                 </body>
                 </html>
@@ -106,7 +115,7 @@ Resources:
                 [cfn-auto-reloader-hook]
                 triggers=post.update
                 path=Resources.WebServerInstance.Metadata.AWS::CloudFormation::Init
-                action=/opt/aws/bin/cfn-init --stack ${AWS::StackName} -resource WebServerInstance --region ${AWS::Region}
+                action=/opt/aws/bin/cfn-init --stack ${AWS::StackName} --resource WebServerInstance --region ${AWS::Region}
                 runas=root
           services:
             sysvinit:
@@ -120,7 +129,6 @@ Resources:
                   - /etc/cfn/cfn-hup.conf
                   - /etc/cfn/hooks.d/cfn-auto-reloader.conf
     Properties:
-      SubnetId: !Ref SubnetId
       IamInstanceProfile: !Ref WebServerInstanceProfile
       ImageId: !Ref AmiID
       InstanceType: !FindInMap [EnvironmentToInstanceType, !Ref EnvironmentType, InstanceType]
@@ -128,7 +136,7 @@ Resources:
         - !Ref WebServerSecurityGroup
       Tags:
         - Key: Name
-          Value: !Join [' ', [!Ref EnvironmentType, Web Server]]
+          Value: !Join ['-', [!Ref EnvironmentType, webserver]]
       UserData: !Base64
         Fn::Sub: |
           #!/bin/bash -xe
@@ -141,23 +149,18 @@ Resources:
 
   WebServerSecurityGroup:
     Type: AWS::EC2::SecurityGroup
+    Metadata:
+      cfn_nag:
+        rules_to_suppress:
+          - id: F1000
+            reason: This is using default VPC where we dont know VpcId to support egress. Missing egress rule means all traffic is allowed outbound.
     Properties:
-      GroupDescription: Enable HTTP and HTTPS access
+      GroupDescription: Enable HTTP access via port 80
       SecurityGroupIngress:
         - IpProtocol: tcp
           FromPort: 80
           ToPort: 80
           CidrIp: 0.0.0.0/0
-      SecurityGroupEgress:
-        - IpProtocol: tcp
-          FromPort: 80
-          ToPort: 80
-          CidrIp: 0.0.0.0/0
-        - IpProtocol: tcp
-          FromPort: 443
-          ToPort: 443
-          CidrIp: 0.0.0.0/0
-      VpcId: !Ref VpcId
 
   WebServerEIP:
     Type: AWS::EC2::EIP
@@ -171,7 +174,7 @@ Outputs:
     Value: !GetAtt WebServerInstance.PublicDnsName
 
   WebServerElasticIP:
-    Description: Elastic IP associated with the web server EC2 instance
+    Description: Elastic IP assigned to EC2
     Value: !Ref WebServerEIP
 
   WebsiteURL:

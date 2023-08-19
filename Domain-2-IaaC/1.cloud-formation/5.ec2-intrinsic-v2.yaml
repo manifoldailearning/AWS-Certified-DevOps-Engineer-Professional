@@ -31,7 +31,7 @@ Resources:
       KeyName: aws-devops
       Tags:
         - Key: "Name"
-          Value: "intrinsic-functions-Manifold-AI-Learning"
+          Value: "intrinsic-functions-Manifold-AI-Learning-v2"
         - Key: "Course"
           Value: "DevOps"
       SecurityGroups:
