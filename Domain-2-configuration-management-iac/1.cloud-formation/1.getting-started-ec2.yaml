@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: '2010-09-09'
-Description: 'AWS CloudFormation Template creates an EC2 Instance on AZ us-east-1a, with the mentioned ImageId'
+Description: 'AWS DevOps Course Manifold AI Learning'
 Resources:
   MyInstance:
     Type: AWS::EC2::Instance

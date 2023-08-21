@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: Configure the AWSCloudFormationStackSetAdministrationRole to enable use of AWS CloudFormation StackSets.
+Description: AWS DevOps Course Manifold AI Learning - Configure the AWSCloudFormationStackSetAdministrationRole to enable use of AWS CloudFormation StackSets.
 
 Resources:
   AdministrationRole:

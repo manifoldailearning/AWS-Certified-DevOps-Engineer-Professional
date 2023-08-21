@@ -1,5 +1,5 @@
 AWSTemplateFormatVersion: 2010-09-09
-Description: Using intrinsic Functions and parameters
+Description: Using intrinsic Functions and parameters - AWS DevOps Course Manifold AI Learning
       
 Parameters:
   s3NamePrefix:
