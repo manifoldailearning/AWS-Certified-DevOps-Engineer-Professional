@@ -1,0 +1,17 @@
+{
+    "Statement" : [
+      {
+        "Effect" : "Deny",
+        "Principal" : "*",
+        "Action" : "Update:Modify",
+        "Resource" : "LogicalResourceId/SNSTopic"
+      },
+      {
+        "Effect" : "Allow",
+        "Principal" : "*",
+        "Action" : "Update:*",
+        "Resource" : "*"
+      }
+    ]
+  }
+  

@@ -30,7 +30,7 @@ Resources:
           - id: F1000
             reason: This is using default VPC where we dont know VpcId to support egress. Missing egress rule means all traffic is allowed outbound.
     Properties:
-      GroupDescription: Workshop Security Group
+      GroupDescription: AWS DevOps Course Manifold AI Learning SG
       Tags:
         - Key: Name
           Value: Resource-dependencies-ManifoldAILearning

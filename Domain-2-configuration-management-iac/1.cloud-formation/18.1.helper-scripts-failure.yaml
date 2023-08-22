@@ -9,6 +9,7 @@ Metadata:
           default: Amazon EC2 Configuration
         Parameters:
           - AmiID
+          - EnvironmentType
     ParameterLabels:
       AmiID:
         default: Amazon Machine Image ID
@@ -64,7 +65,7 @@ Resources:
     CreationPolicy:
       ResourceSignal:
         Count: 1
-        Timeout: PT10M
+        Timeout: PT1M
     Type: AWS::EC2::Instance
     Metadata:
       AWS::CloudFormation::Init:
@@ -147,8 +148,7 @@ Resources:
           yum install -y aws-cfn-bootstrap
           # Call cfn-init script to install files and packages
           /opt/aws/bin/cfn-init -v --stack ${AWS::StackName} --resource WebServerInstance --region ${AWS::Region}
-          # Call cfn-signal script to send a signal with exit code
-          /opt/aws/bin/cfn-signal --exit-code $? --stack ${AWS::StackName} --resource WebServerInstance --region ${AWS::Region}
+          
 
   WebServerSecurityGroup:
     Type: AWS::EC2::SecurityGroup
