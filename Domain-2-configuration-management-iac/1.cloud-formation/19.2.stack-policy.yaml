@@ -12,7 +12,7 @@ Parameters:
   SNSTopicTagValue:
     Description: Tag value for your Amazon SNS topic
     Type: String
-    Default: Topic-Tag-1
+    Default: Manifold-AI-Learning-V1
     MinLength: 1
     MaxLength: 256
 
@@ -20,7 +20,7 @@ Resources:
   SNSTopic:
     Type: AWS::SNS::Topic
     Properties:
-      TopicName: Topic-1
+      TopicName: Manifold-AI-Learning-Topic-V1
       Tags:
         - Key: TagSNS
           Value: !Ref SNSTopicTagValue

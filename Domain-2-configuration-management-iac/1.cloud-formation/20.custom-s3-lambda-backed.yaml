@@ -12,7 +12,7 @@ Resources:
     DeletionPolicy: Delete
 
   S3CustomResource:
-    Type: Custom::S3CustomResource
+    Type: Custom::S3CustomResource # AWS::CloudFormation::CustomResource 
     Properties:
       ServiceToken: !GetAtt AWSLambdaFunction.Arn
       bucket_name: !Ref SampleS3Bucket    
