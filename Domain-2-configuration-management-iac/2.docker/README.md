@@ -29,7 +29,7 @@ docker run -p 8888:5000 manifoldailearning/catgif
 docker build -t catgifv2 .
 docker run -p 8888:5000 catgifv2
 docker login
-docker build -t yourusername/catgif .
-docker push yourusername/catgif
+docker build -t yourusername/catgif-devops .
+docker push yourusername/catgif-devops
 ```
 
