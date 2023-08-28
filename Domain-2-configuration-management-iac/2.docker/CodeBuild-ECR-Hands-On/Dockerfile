@@ -1,13 +1,16 @@
-FROM manifoldailearning/golang:1.12-alpine AS build
-#Install git
-RUN apk add --no-cache git
-#Get the hello world package from a GitHub repository
-RUN go get https://github.com/manifoldailearning/AWS-Certified-DevOps-Engineer-Professional/Domain-2-configuration-management-iac/2.docker/hello
-WORKDIR /go/src/github.com/manifoldailearning/AWS-Certified-DevOps-Engineer-Professional/Domain-2-configuration-management-iac/2.docker/hello
-# Build the project and send the output to /bin/HelloWorld 
-RUN go build -o /bin/HelloWorld
+FROM public.ecr.aws/docker/library/python:3.8
 
-FROM manifoldailearning/golang:1.12-alpine
-#Copy the build's output binary from the previous build container
-COPY --from=build /bin/HelloWorld /bin/HelloWorld
-ENTRYPOINT ["/bin/HelloWorld"]
+# set a directory for the app
+WORKDIR /usr/src/app
+
+# copy all the files to the container
+COPY . .
+
+# install dependencies
+RUN pip install --no-cache-dir -r requirements.txt
+
+# tell the port number the container should expose
+EXPOSE 5000
+
+# run the command
+CMD ["python", "./app.py"]
