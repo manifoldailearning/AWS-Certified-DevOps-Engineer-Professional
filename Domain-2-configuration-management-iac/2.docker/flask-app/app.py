@@ -4,7 +4,7 @@ import random
 
 app = Flask(__name__)
 
-# list of cat images
+
 images = [
     "https://raw.githubusercontent.com/manifoldailearning/mlops-with-aws-datascientists/main/Section-11-Docker/images/image1.gif",
     "https://raw.githubusercontent.com/manifoldailearning/mlops-with-aws-datascientists/main/Section-11-Docker/images/image2.gif",
@@ -13,11 +13,10 @@ images = [
     "https://raw.githubusercontent.com/manifoldailearning/mlops-with-aws-datascientists/main/Section-11-Docker/images/image5.gif"
 ]
 
-
 @app.route("/")
 def index():
-    url = random.choice(images)
-    return render_template("index.html", url=url)
+    src = '/images/'+random.choice(images)
+    return render_template("index.html", url=src)
 
 
 if __name__ == "__main__":

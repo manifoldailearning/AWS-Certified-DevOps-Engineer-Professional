@@ -13,4 +13,5 @@ cd HelloWorld
 eb init -i
 echo "Hello World" > index.html
 eb create dev-env
+eb terminate
 ```

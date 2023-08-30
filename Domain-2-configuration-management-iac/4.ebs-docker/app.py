@@ -5,7 +5,7 @@ def say_hello(username = "World"):
 
 # Some bits of text for the page
 header_text = '''
- <html>\n<head> <title> This is text from Python App</title> </head>\n<body>'''
+ <html>\n<head> <title>Welcome to AWS Manifold AI Learning Course</title> </head>\n<body>'''
 
 instructions = '''
  <font color="white"><h2><em> Hope you are Enjoying!! - Team Manifold AI Learning</h2></font>\n'''
